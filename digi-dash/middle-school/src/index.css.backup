@@ -1,0 +1,657 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  html {
+    @apply text-[14px] md:text-[16px];
+  }
+
+  .container {
+    @apply px-4 md:px-6 lg:px-8 mx-auto max-w-7xl;
+  }
+}
+
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Student Details Page Styles */
+:root {
+  --bg: #9CA3AF;
+  --card: #FFFFFF;
+  --p-blue: #D9EEFF;
+  --blue: #1678FF;
+  --p-green: #E6F7DA;
+  --green: #44C24A;
+  --p-orange: #FFF4E6;
+  --orange: #FF9A2E;
+  --p-pink: #FFEFF0;
+  --red: #FF6B6B;
+  --muted: #E6E9EE;
+  --r: 18px;
+  --shadow: 0 6px 20px rgba(15, 23, 42, 0.06);
+}
+
+/* Dark mode color overrides */
+.dark {
+  --bg: #1e293b;
+  --card: #334155;
+  --p-blue: #1e3a5f;
+  --blue: #3b82f6;
+  --p-green: #1e3a1e;
+  --green: #4ade80;
+  --p-orange: #3a2e1e;
+  --orange: #fb923c;
+  --p-pink: #3a1e1e;
+  --red: #f87171;
+  --muted: #475569;
+  --shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+@layer base {
+  body {
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@keyframes softFadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.soft-fade {
+  opacity: 0;
+  animation: softFadeUp 0.8s ease-out forwards;
+}
+
+.soft-fade-row {
+  opacity: 0;
+  animation: softFadeUp 0.6s ease-out forwards;
+}
+
+.soft-fade-delay-1 {
+  animation-delay: 0.1s;
+}
+
+.soft-fade-delay-2 {
+  animation-delay: 0.2s;
+}
+
+.soft-fade-delay-3 {
+  animation-delay: 0.3s;
+}
+
+.soft-fade-delay-4 {
+  animation-delay: 0.4s;
+}
+
+.hide-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Tailwind color utilities for student details page */
+.bg-bg {
+  background-color: var(--bg);
+}
+
+.bg-card {
+  background-color: var(--card);
+}
+
+.bg-p-blue {
+  background-color: var(--p-blue);
+}
+
+.bg-blue {
+  background-color: var(--blue);
+}
+
+.bg-p-green {
+  background-color: var(--p-green);
+}
+
+.bg-green {
+  background-color: var(--green);
+}
+
+.bg-p-orange {
+  background-color: var(--p-orange);
+}
+
+.bg-orange {
+  background-color: var(--orange);
+}
+
+.bg-p-pink {
+  background-color: var(--p-pink);
+}
+
+.bg-red {
+  background-color: var(--red);
+}
+
+.bg-muted {
+  background-color: var(--muted);
+}
+
+.text-text-primary {
+  color: #0F172A;
+}
+
+.text-text-muted {
+  color: #6B7280;
+}
+
+.rounded-card {
+  border-radius: var(--r);
+}
+
+.rounded-inner {
+  border-radius: 12px;
+}
+
+.shadow-card {
+  box-shadow: var(--shadow);
+}
+
+.shadow-card-hover {
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+}
+
+.font-poppins {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Ensure Poppins is used for entire attendance section */
+.bg-bg,
+.bg-bg *,
+.bg-card,
+.bg-card *,
+.bg-p-blue,
+.bg-p-blue *,
+.attendance-section,
+.attendance-section * {
+  font-family: 'Poppins', sans-serif !important;
+}
+
+/* Apply Poppins to all attendance page elements */
+[class*="attendance"],
+[class*="student-details"] {
+  font-family: 'Poppins', sans-serif !important;
+}
+
+/* Dark mode styles for profile page */
+.dark .bg-slate-100 {
+  background-color: rgb(30 41 59) !important;
+}
+
+.dark .bg-white {
+  background-color: rgb(51 65 85) !important;
+}
+
+.dark .text-slate-900 {
+  color: rgb(241 245 249) !important;
+}
+
+.dark .text-slate-700 {
+  color: rgb(203 213 225) !important;
+}
+
+.dark .text-slate-500 {
+  color: rgb(148 163 184) !important;
+}
+
+.dark .bg-slate-50 {
+  background-color: rgb(71 85 105) !important;
+}
+
+.dark .border-slate-200 {
+  border-color: rgb(71 85 105) !important;
+}
+
+.dark .shadow-md,
+.dark .shadow-lg {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Dark mode text colors for dashboard */
+.dark .text-text-primary {
+  color: #f1f5f9 !important;
+}
+
+.dark .text-text-muted {
+  color: #94a3b8 !important;
+}
+
+/* Additional dark mode styles for better visibility */
+.dark h1,
+.dark h2,
+.dark h3,
+.dark h4,
+.dark h5,
+.dark h6 {
+  color: #f1f5f9 !important;
+}
+
+.dark p,
+.dark span,
+.dark div {
+  color: inherit;
+}
+
+opacity: 0;
+transform: translateY(18px);
+}
+
+100% {
+  opacity: 1;
+  transform: translateY(0);
+}
+}
+
+.soft-fade {
+  opacity: 0;
+  animation: softFadeUp 0.8s ease-out forwards;
+}
+
+.soft-fade-row {
+  opacity: 0;
+  animation: softFadeUp 0.6s ease-out forwards;
+}
+
+.soft-fade-delay-1 {
+  animation-delay: 0.1s;
+}
+
+.soft-fade-delay-2 {
+  animation-delay: 0.2s;
+}
+
+.soft-fade-delay-3 {
+  animation-delay: 0.3s;
+}
+
+.soft-fade-delay-4 {
+  animation-delay: 0.4s;
+}
+
+.hide-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Tailwind color utilities for student details page */
+.bg-bg {
+  background-color: var(--bg);
+}
+
+.bg-card {
+  background-color: var(--card);
+}
+
+.bg-p-blue {
+  background-color: var(--p-blue);
+}
+
+.bg-blue {
+  background-color: var(--blue);
+}
+
+.bg-p-green {
+  background-color: var(--p-green);
+}
+
+.bg-green {
+  background-color: var(--green);
+}
+
+.bg-p-orange {
+  background-color: var(--p-orange);
+}
+
+.bg-orange {
+  background-color: var(--orange);
+}
+
+.bg-p-pink {
+  background-color: var(--p-pink);
+}
+
+.bg-red {
+  background-color: var(--red);
+}
+
+.bg-muted {
+  background-color: var(--muted);
+}
+
+.text-text-primary {
+  color: #0F172A;
+}
+
+.text-text-muted {
+  color: #6B7280;
+}
+
+.rounded-card {
+  border-radius: var(--r);
+}
+
+.rounded-inner {
+  border-radius: 12px;
+}
+
+.shadow-card {
+  box-shadow: var(--shadow);
+}
+
+.shadow-card-hover {
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+}
+
+.font-poppins {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Ensure Poppins is used for entire attendance section */
+.bg-bg,
+.bg-bg *,
+.bg-card,
+.bg-card *,
+.bg-p-blue,
+.bg-p-blue *,
+.attendance-section,
+.attendance-section * {
+  font-family: 'Poppins', sans-serif !important;
+}
+
+/* Apply Poppins to all attendance page elements */
+[class*="attendance"],
+[class*="student-details"] {
+  font-family: 'Poppins', sans-serif !important;
+}
+
+/* Dark mode styles for profile page */
+.dark .bg-slate-100 {
+  background-color: rgb(30 41 59) !important;
+}
+
+.dark .bg-white {
+  background-color: rgb(51 65 85) !important;
+}
+
+.dark .text-slate-900 {
+  color: rgb(241 245 249) !important;
+}
+
+.dark .text-slate-700 {
+  color: rgb(203 213 225) !important;
+}
+
+.dark .text-slate-500 {
+  color: rgb(148 163 184) !important;
+}
+
+.dark .bg-slate-50 {
+  background-color: rgb(71 85 105) !important;
+}
+
+.dark .border-slate-200 {
+  border-color: rgb(71 85 105) !important;
+}
+
+.dark .shadow-md,
+.dark .shadow-lg {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Dark mode text colors for dashboard */
+.dark .text-text-primary {
+  color: #f1f5f9 !important;
+}
+
+.dark .text-text-muted {
+  color: #94a3b8 !important;
+}
+
+/* Additional dark mode styles for better visibility */
+.dark h1,
+.dark h2,
+.dark h3,
+.dark h4,
+.dark h5,
+.dark h6 {
+  color: #f1f5f9 !important;
+}
+
+.dark p,
+.dark span,
+.dark div {
+  color: inherit;
+}
+
+/* Ensure sidebar text is visible in dark mode */
+.dark [data-sidebar] {
+  color: #f1f5f9;
+}
+
+/* Dark mode for cards and containers */
+.dark .bg-bg {
+  background-color: var(--bg) !important;
+}
+
+.dark .bg-card {
+  background-color: var(--card) !important;
+}
+
+/* Dark mode for all Tailwind text colors */
+.dark .text-gray-900,
+.dark .text-gray-800,
+.dark .text-gray-700 {
+  color: #f1f5f9 !important;
+}
+
+.dark .text-gray-600,
+.dark .text-gray-500 {
+  color: #cbd5e1 !important;
+}
+
+.dark .text-gray-400 {
+  color: #94a3b8 !important;
+}
+
+/* Dark mode for Tailwind backgrounds */
+.dark .bg-gray-50,
+.dark .bg-gray-100 {
+  background-color: rgb(51 65 85) !important;
+}
+
+.dark .bg-gray-200 {
+  background-color: rgb(71 85 105) !important;
+}
+
+/* Dark mode for borders */
+.dark .border-gray-200,
+.dark .border-gray-300 {
+  border-color: rgb(71 85 105) !important;
+}
+
+/* Ensure all card text is visible */
+.dark .bg-white *,
+.dark .bg-slate-100 *,
+.dark .bg-gray-50 *,
+.dark .bg-gray-100 * {
+  color: #f1f5f9;
+}
+
+/* Override for muted text in cards */
+.dark .bg-white .text-gray-500,
+.dark .bg-white .text-gray-600,
+.dark .bg-white .text-slate-500,
+.dark .bg-white .text-text-muted {
+  color: #94a3b8 !important;
+}
+
+/* Ensure colored backgrounds have proper text */
+.dark .bg-blue-50,
+.dark .bg-green-50,
+.dark .bg-red-50,
+.dark .bg-orange-50,
+.dark .bg-yellow-50 {
+  color: #f1f5f9 !important;
+}
+
+/* Dark mode for custom colored cards */
+.dark .bg-p-blue *,
+.dark .bg-p-green *,
+.dark .bg-p-orange *,
+.dark .bg-p-pink * {
+  color: #f1f5f9 !important;
+}

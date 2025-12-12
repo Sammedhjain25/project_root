@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/* Video Player Hover Effect */
+.video-player-hover {
+  position: relative;
+  overflow: hidden;
+}
+
+.video-player-hover::before,
+.video-player-hover::after {
+  position: absolute;
+  content: "";
+  width: 20%;
+  height: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(59, 130, 246, 0.3);
+  transition: all 0.5s;
+  z-index: 20;
+  pointer-events: none;
+}
+
+.video-player-hover::before {
+  top: 0;
+  right: 0;
+  border-radius: 0 15px 0 100%;
+}
+
+.video-player-hover::after {
+  bottom: 0;
+  left: 0;
+  border-radius: 0 100% 0 15px;
+}
+
+.video-player-hover:hover::before,
+.video-player-hover:hover::after {
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  transition: all 0.5s;
+}
+
+.video-player-hover:hover::after {
+  content: "Full-Stack Course";
+  color: white;
+  font-size: 32px;
+  font-weight: bold;
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+}
+
+/* Card Hover Effect for About, Reviews, and Discussion */
+.content-card {
+  display: block;
+  position: relative;
+  background-color: #f2f8f9;
+  border-radius: 4px;
+  text-decoration: none;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.content-card:before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  top: -50%;
+  right: -50%;
+  background: #3B82F6;
+  width: 200%;
+  height: 200%;
+  border-radius: 50%;
+  transform: scale(0);
+  transform-origin: top right;
+  transition: transform 0.5s ease-out;
+}
+
+.content-card:hover:before {
+  transform: scale(1);
+}
+
+.content-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.content-card:hover p {
+  transition: all 0.3s ease-out 0.1s;
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.content-card:hover span:not(.go-arrow) {
+  transition: all 0.3s ease-out 0.1s;
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.content-card:hover h3,
+.content-card:hover h4,
+.content-card:hover h5 {
+  transition: all 0.3s ease-out 0.1s;
+  color: #fff !important;
+}
+
+.content-card:hover .text-gray-600,
+.content-card:hover .text-gray-500 {
+  transition: all 0.3s ease-out 0.1s;
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.content-card:hover svg {
+  transition: all 0.3s ease-out 0.1s;
+  color: rgba(255, 255, 255, 0.9) !important;
+  fill: rgba(255, 255, 255, 0.9) !important;
+}
+
+.go-corner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  overflow: hidden;
+  top: 0;
+  right: 0;
+  background-color: #3B82F6;
+  border-radius: 0 4px 0 32px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.go-arrow {
+  margin-top: -4px;
+  margin-right: -4px;
+  color: white;
+  font-family: courier, sans;
+  font-size: 20px;
+  font-weight: bold;
+  pointer-events: none;
+}
+

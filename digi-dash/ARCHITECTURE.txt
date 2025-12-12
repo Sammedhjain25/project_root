@@ -1,0 +1,167 @@
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                         DIGI-DASH ARCHITECTURE                              │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+                              USER ACCESSES
+                                    ↓
+                    ┌───────────────────────────────┐
+                    │   LOGIN APPLICATION           │
+                    │   http://localhost:3000       │
+                    │   (React - Create React App)  │
+                    └───────────────┬───────────────┘
+                                    │
+                    ┌───────────────┴───────────────┐
+                    │   ROLE SELECTION              │
+                    │   • Student                   │
+                    │   • Teacher                   │
+                    │   • Parent                    │
+                    │   • Admin                     │
+                    └───────────────┬───────────────┘
+                                    │
+                    ┌───────────────┴───────────────┐
+                    │   AUTHENTICATION              │
+                    │   (Email + Password + OTP)    │
+                    └───────────────┬───────────────┘
+                                    │
+                    ┌───────────────┴───────────────┐
+                    │   REDIRECT BASED ON ROLE      │
+                    └───────────────┬───────────────┘
+                                    │
+        ┌───────────┬───────────────┼───────────────┬───────────┐
+        │           │               │               │           │
+        ↓           ↓               ↓               ↓           ↓
+┌───────────┐ ┌───────────┐ ┌───────────┐ ┌───────────┐ ┌───────────┐
+│  STUDENT  │ │  TEACHER  │ │   PARENT  │ │   ADMIN   │ │   LOGIN   │
+│ Dashboard │ │ Dashboard │ │  Portal   │ │ Dashboard │ │   Page    │
+├───────────┤ ├───────────┤ ├───────────┤ ├───────────┤ ├───────────┤
+│ Port 5173 │ │ Port 5175 │ │ Port 5176 │ │ Port 5174 │ │ Port 3000 │
+├───────────┤ ├───────────┤ ├───────────┤ ├───────────┤ ├───────────┤
+│  5th_     │ │  school   │ │  Parent   │ │ ADMIN-DB  │ │   login   │
+│  grade    │ │Management │ │           │ │           │ │           │
+│           │ │ Frontend  │ │           │ │           │ │           │
+├───────────┤ ├───────────┤ ├───────────┤ ├───────────┤ ├───────────┤
+│React+Vite │ │React+Vite │ │React+Vite │ │React+Vite │ │React (CRA)│
+│           │ │           │ │           │ │+TypeScript│ │           │
+└───────────┘ └───────────┘ └───────────┘ └───────────┘ └───────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                          DEVELOPMENT WORKFLOW                               │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+    1. Developer runs: npm run dev (from root directory)
+                              ↓
+    2. Concurrently starts all 5 applications
+                              ↓
+    ┌─────────────────────────────────────────────────────────────────┐
+    │  Terminal Output (Color Coded):                                 │
+    │  [LOGIN]   - Cyan    - Starting on port 3000                    │
+    │  [STUDENT] - Green   - Starting on port 5173                    │
+    │  [ADMIN]   - Red     - Starting on port 5174                    │
+    │  [TEACHER] - Yellow  - Starting on port 5175                    │
+    │  [PARENT]  - Magenta - Starting on port 5176                    │
+    └─────────────────────────────────────────────────────────────────┘
+                              ↓
+    3. All applications are ready (30-60 seconds)
+                              ↓
+    4. Developer/User accesses http://localhost:3000
+                              ↓
+    5. User selects role and logs in
+                              ↓
+    6. Automatic redirect to appropriate dashboard
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                            FILE STRUCTURE                                   │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+I:\digi-dash\
+│
+├── package.json              ← Root package (runs all apps)
+├── README.md                 ← Full documentation
+├── QUICKSTART.md             ← Quick start guide
+├── SETUP_COMPLETE.md         ← Setup summary
+├── ARCHITECTURE.txt          ← This file
+│
+├── login\                    ← Login & Auth (Port 3000)
+│   ├── package.json          ← Modified: PORT=3000
+│   ├── .env                  ← Created: PORT configuration
+│   └── src\
+│       └── Components\
+│           └── LoginRegister\
+│               └── LoginRegister.jsx  ← Modified: Added redirects
+│
+├── 5th_grade\                ← Student Dashboard (Port 5173)
+│   ├── package.json
+│   └── vite.config.js        ← Modified: port: 5173
+│
+├── ADMIN-DB\                 ← Admin Dashboard (Port 5174)
+│   ├── package.json
+│   └── vite.config.ts        ← Modified: port: 5174 (was 8080)
+│
+├── schoolManagementFrontend\ ← Teacher Dashboard (Port 5175)
+│   ├── package.json
+│   └── vite.config.js        ← Modified: port: 5175
+│
+└── Parent\                   ← Parent Portal (Port 5176)
+    ├── package.json
+    └── vite.config.js        ← Modified: port: 5176
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                         REDIRECT LOGIC FLOW                                 │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+LoginRegister.jsx → handleLoginSubmit() → redirectToRoleApp()
+                                                    │
+                    ┌───────────────────────────────┴───────────────────────┐
+                    │  const roleRedirects = {                              │
+                    │    Student: "http://localhost:5173",  // 5th_grade    │
+                    │    Admin:   "http://localhost:5174",  // ADMIN-DB     │
+                    │    Teacher: "http://localhost:5175",  // schoolMgmt   │
+                    │    Parent:  "http://localhost:5176"   // Parent       │
+                    │  };                                                    │
+                    │                                                        │
+                    │  window.location.href = roleRedirects[selectedRole];  │
+                    └────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                         COMMANDS REFERENCE                                  │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+From I:\digi-dash\ directory:
+
+  npm run dev              → Start all 5 applications
+  npm run dev:login        → Start login only
+  npm run dev:student      → Start student dashboard only
+  npm run dev:admin        → Start admin dashboard only
+  npm run dev:teacher      → Start teacher dashboard only
+  npm run dev:parent       → Start parent dashboard only
+  npm run install:all      → Install dependencies for all apps
+
+  Ctrl+C                   → Stop all running applications
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                         PORT MAPPING                                        │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+  3000  →  Login Application (Entry Point)
+  5173  →  Student Dashboard (5th_grade)
+  5174  →  Admin Dashboard (ADMIN-DB)
+  5175  →  Teacher Dashboard (schoolManagementFrontend)
+  5176  →  Parent Portal (Parent)
+
+  All ports must be free for the system to work properly!
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                         TECHNOLOGY STACK                                    │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+  Login:    React 19.2.0 + Create React App (react-scripts 5.0.1)
+  Student:  React 19.2.0 + Vite 6.0.7
+  Admin:    React 18.3.1 + Vite 5.4.19 + TypeScript 5.8.3
+  Teacher:  React 19.2.0 + Vite (rolldown-vite 7.2.2)
+  Parent:   React 19.2.0 + Vite 6.0.7
+
+  Build Tool:  Concurrently 8.2.2 (for running multiple apps)
+
+═══════════════════════════════════════════════════════════════════════════════
+                              END OF ARCHITECTURE
+═══════════════════════════════════════════════════════════════════════════════

@@ -1,0 +1,1184 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+.event-page-container {
+  max-width: 1500px;
+  margin: 0 auto;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* No scrollbar utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.event-main-card {
+  background-color: transparent;
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none;
+}
+
+.event-main-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+/* Left Column */
+.event-left-column {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* Right Column */
+.event-right-column {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* Section Titles */
+.event-section-title {
+  font-size: 22px;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0 0 20px 0;
+  font-family: 'Poppins', sans-serif;
+  transition: color 0.3s ease;
+}
+
+.dark-mode .event-section-title {
+  color: #ffffff !important;
+}
+
+/* Ongoing Class Section */
+.event-ongoing-section {
+  background-color: transparent;
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none;
+}
+
+.event-ongoing-section .event-section-title {
+  margin-left: 20px;
+}
+
+/* Removed grid layout - now using flex with horizontal scrolling in JSX */
+
+.event-ongoing-card {
+  /* background-color handled by JSX */
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: 0 10px 40px rgba(15, 23, 42, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.event-ongoing-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.event-ongoing-percentage {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1e293b;
+  font-family: 'Poppins', sans-serif;
+}
+
+.dark-mode .event-ongoing-percentage {
+  color: #ffffff !important;
+}
+
+.event-ongoing-arrow {
+  font-size: 20px;
+  color: #9ca3af;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.event-ongoing-name {
+  font-size: 16px;
+  font-weight: 500;
+  color: #475569;
+  font-family: 'Poppins', sans-serif;
+}
+
+.dark-mode .event-ongoing-name {
+  color: #e5e7eb !important;
+}
+
+.event-ongoing-progress {
+  position: relative;
+  height: 6px;
+  background-color: #edf2f7;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.event-ongoing-progress-bar {
+  height: 100%;
+  border-radius: 999px;
+}
+
+.event-progress-green {
+  background-color: #0bb885;
+  width: 75%;
+}
+
+.event-progress-orange {
+  background-color: #f59e0b;
+  width: 50%;
+}
+
+.event-progress-blue {
+  background-color: #3b82f6;
+  width: 60%;
+}
+
+.event-progress-purple {
+  background-color: #8b5cf6;
+  width: 85%;
+}
+
+/* Today Schedule Section */
+.event-today-section {
+  /* background-color handled by JSX */
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: 0 10px 40px rgba(15, 23, 42, 0.08);
+}
+
+.dark-mode .event-today-section,
+.dark-mode .event-calendar-section,
+.dark-mode .event-upcoming-section {
+  background-color: #141E5A !important;
+  background-image: none !important;
+}
+
+.event-today-timeline {
+  position: relative;
+  display: flex;
+  gap: 24px;
+  min-height: 480px;
+  overflow: hidden;
+}
+
+.event-time-labels {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  font-size: 12px;
+  color: #64748b;
+  min-width: 50px;
+  padding-top: 12px;
+  position: relative;
+  font-family: 'Poppins', sans-serif;
+  flex-shrink: 0;
+}
+
+.dark-mode .event-time-labels {
+  color: #e2e8f0;
+  /* slate-200 */
+}
+
+.event-time-label {
+  height: 24px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  font-family: 'Poppins', sans-serif;
+}
+
+.event-schedule-items {
+  position: relative;
+  flex: 1;
+  min-height: 480px;
+  padding-left: 0;
+  padding-right: 0;
+  overflow: visible;
+}
+
+.event-timeline-grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  padding-top: 12px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.event-timeline-line {
+  height: 24px;
+  border-top: 1px dashed rgba(0, 0, 0, 0.15);
+  width: 100%;
+}
+
+.event-schedule-item {
+  position: absolute;
+  /* background-color handled by JSX */
+  border-radius: 18px;
+  padding: 18px 20px;
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12);
+  border-left: 8px solid;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 2;
+}
+
+.event-schedule-red {
+  border-color: #ef4444;
+}
+
+.event-schedule-green {
+  border-color: #0bb885;
+}
+
+.event-schedule-orange {
+  border-color: #f97316;
+}
+
+.event-schedule-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.event-schedule-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  font-size: 16px;
+  color: #1e293b;
+  font-family: 'Poppins', sans-serif;
+}
+
+.dark-mode .event-schedule-header {
+  color: #ffffff !important;
+}
+
+.event-schedule-menu {
+  font-size: 20px;
+  color: #9ca3af;
+  cursor: pointer;
+}
+
+.event-schedule-subtitle {
+  font-size: 12px;
+  color: #64748b;
+  font-family: 'Poppins', sans-serif;
+}
+
+.dark-mode .event-schedule-subtitle {
+  color: #d1d5db !important;
+}
+
+/* Hide any remaining avatar images */
+.event-schedule-avatars,
+.event-schedule-avatars img {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+.event-upcoming-teacher img {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+/* Calendar Section */
+.event-calendar-section {
+  /* background-color handled by JSX */
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: 0 10px 40px rgba(15, 23, 42, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.event-calendar-content {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.event-calendar-widget {
+  display: flex;
+  justify-content: flex-start;
+  flex: 1;
+  margin-left: 20px;
+}
+
+.event-calendar-component {
+  border: none;
+  box-shadow: none;
+}
+
+.event-calendar-widget :global([role="gridcell"]),
+.event-calendar-widget :global([role="gridcell"] button),
+.event-calendar-widget :global(button[aria-label*="day"]),
+.event-calendar-widget :global(.rdp-day_button),
+.event-calendar-widget :global(.rdp-day) {
+  border-radius: 50% !important;
+}
+
+.event-calendar-widget :global([role="gridcell"] button),
+.event-calendar-widget :global(button[aria-label*="day"]),
+.event-calendar-widget :global(.rdp-day_button) {
+  color: #2563eb !important;
+  width: 36px !important;
+  height: 36px !important;
+  min-width: 36px !important;
+  min-height: 36px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 50% !important;
+  font-family: 'Poppins', sans-serif !important;
+}
+
+.event-calendar-widget :global([role="gridcell"] button:hover),
+.event-calendar-widget :global(button[aria-label*="day"]:hover),
+.event-calendar-widget :global(.rdp-day_button:hover) {
+  background-color: #dbeafe !important;
+  border-radius: 50% !important;
+}
+
+.event-calendar-widget :global([role="gridcell"] button[aria-selected="true"]),
+.event-calendar-widget :global(button[aria-label*="day"][aria-selected="true"]),
+.event-calendar-widget :global(.rdp-day_button[aria-selected="true"]) {
+  background-color: #2563eb !important;
+  color: white !important;
+  border-radius: 50% !important;
+}
+
+.event-calendar-widget :global(.event-highlighted-date) {
+  background-color: #2563eb !important;
+  color: white !important;
+  border-radius: 50% !important;
+}
+
+.event-calendar-widget :global(.event-highlighted-date[data-day="17"]) {
+  background-color: #f97316 !important;
+  border-radius: 50% !important;
+}
+
+.event-calendar-progress {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  flex: 1;
+}
+
+.event-progress-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: #1e293b;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+}
+
+.dark-mode .event-progress-title {
+  color: #ffffff !important;
+}
+
+.event-progress-chart {
+  position: relative;
+  width: 150px;
+  height: 105px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.event-progress-svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.event-progress-bg {
+  fill: none;
+  stroke: #f0f2f6;
+  stroke-width: 12;
+  stroke-linecap: round;
+}
+
+.event-progress-fill {
+  fill: none;
+  stroke: #f59e0b;
+  stroke-width: 12;
+  stroke-linecap: round;
+  stroke-dasharray: 169.65;
+  stroke-dashoffset: 144;
+}
+
+.event-progress-value {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.event-progress-percent {
+  font-size: 20px;
+  font-weight: 600;
+  color: #f59e0b;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Calendar Text */
+.event-calendar-text {
+  font-size: 14px;
+  color: #64748b;
+  text-align: center;
+  line-height: 1.5;
+  font-family: 'Poppins', sans-serif;
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+.dark-mode .event-calendar-text {
+  color: #cbd5e1;
+  /* slate-300 */
+}
+
+/* Legend */
+.event-calendar-legend {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  font-size: 12px;
+  color: #64748b;
+  flex-wrap: wrap;
+  font-family: 'Poppins', sans-serif;
+}
+
+.dark-mode .event-calendar-legend {
+  color: #e2e8f0;
+  /* slate-200 */
+}
+
+.event-calendar-legend li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.event-legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+/* Upcoming Schedule Section */
+.event-upcoming-section {
+  background-color: transparent;
+  border-radius: 24px;
+  padding: 0;
+  box-shadow: none;
+}
+
+.event-upcoming-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  gap: 16px;
+}
+
+.event-upcoming-header .event-section-title {
+  margin-left: 20px;
+}
+
+.event-upcoming-header .event-view-all {
+  margin-right: 20px;
+}
+
+.event-view-all {
+  background: none;
+  border: none;
+  color: #0bb885;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 14px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.event-upcoming-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.event-upcoming-item {
+  display: grid;
+  grid-template-columns: 6px 1fr auto 32px;
+  align-items: center;
+  /* background-color handled by JSX */
+  border-radius: 18px;
+  padding: 16px 20px;
+  gap: 18px;
+}
+
+.event-upcoming-marker {
+  width: 6px;
+  height: 48px;
+  border-radius: 999px;
+}
+
+.event-marker-green {
+  background-color: #0bb885;
+}
+
+.event-marker-orange {
+  background-color: #f97316;
+}
+
+.event-marker-red {
+  background-color: #ef4444;
+}
+
+.event-upcoming-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.event-upcoming-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1e293b;
+  font-family: 'Poppins', sans-serif;
+}
+
+.dark-mode .event-upcoming-title {
+  color: #ffffff !important;
+}
+
+.event-upcoming-teacher {
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  color: #64748b;
+  font-family: 'Poppins', sans-serif;
+}
+
+.dark-mode .event-upcoming-teacher {
+  color: #d1d5db;
+}
+
+.event-upcoming-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 12px;
+  color: #64748b;
+  font-family: 'Poppins', sans-serif;
+}
+
+.dark-mode .event-upcoming-meta {
+  color: #d1d5db;
+}
+
+.event-upcoming-date,
+.event-upcoming-time {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.event-upcoming-date svg,
+.event-upcoming-time svg {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+  stroke-width: 2;
+  fill: none;
+}
+
+.event-upcoming-arrow {
+  font-size: 20px;
+  color: #cbd5f5;
+  cursor: pointer;
+}
+
+/* ========== iPad Pro Responsive Styles (1024px-1366px) ========== */
+@media (min-width: 1024px) and (max-width: 1366px) {
+
+  /* Container adjustments */
+  .event-page-container {
+    padding: 0 10px;
+  }
+
+  /* Section title - reduce font size by ~10% */
+  .event-section-title {
+    font-size: 20px !important;
+    margin-bottom: 16px !important;
+  }
+
+  /* Ongoing section adjustments */
+  .event-ongoing-section {
+    padding: 16px !important;
+  }
+
+  .event-ongoing-card {
+    padding: 16px !important;
+    border-radius: 16px !important;
+    gap: 10px !important;
+  }
+
+  .event-ongoing-percentage {
+    font-size: 16px !important;
+  }
+
+  .event-ongoing-name {
+    font-size: 14px !important;
+  }
+
+  /* Today schedule section */
+  .event-today-section {
+    padding: 16px !important;
+    border-radius: 20px !important;
+  }
+
+  .event-today-timeline {
+    gap: 16px !important;
+    min-height: 420px !important;
+  }
+
+  .event-time-labels {
+    gap: 42px !important;
+    font-size: 11px !important;
+    min-width: 45px !important;
+  }
+
+  .event-timeline-grid {
+    gap: 42px !important;
+  }
+
+  .event-schedule-items {
+    min-height: 420px !important;
+  }
+
+  .event-schedule-item {
+    padding: 14px 16px !important;
+    border-radius: 16px !important;
+    gap: 10px !important;
+  }
+
+  .event-schedule-header {
+    font-size: 14px !important;
+  }
+
+  .event-schedule-subtitle {
+    font-size: 11px !important;
+  }
+
+  /* Calendar section */
+  .event-calendar-section {
+    padding: 16px !important;
+    border-radius: 20px !important;
+    gap: 16px !important;
+  }
+
+  .event-calendar-content {
+    gap: 16px !important;
+  }
+
+  .event-calendar-widget {
+    margin-left: 10px !important;
+  }
+
+  .event-calendar-widget :global([role="gridcell"] button),
+  .event-calendar-widget :global(button[aria-label*="day"]),
+  .event-calendar-widget :global(.rdp-day_button) {
+    width: 32px !important;
+    height: 32px !important;
+    min-width: 32px !important;
+    min-height: 32px !important;
+    font-size: 13px !important;
+  }
+
+  .event-progress-chart {
+    width: 130px !important;
+    height: 91px !important;
+  }
+
+  .event-progress-title {
+    font-size: 13px !important;
+  }
+
+  .event-progress-percent {
+    font-size: 18px !important;
+  }
+
+  .event-calendar-text {
+    font-size: 11px !important;
+  }
+
+  .event-calendar-legend {
+    gap: 12px !important;
+    font-size: 11px !important;
+  }
+
+  /* Upcoming schedule section */
+  .event-upcoming-section {
+    padding: 16px !important;
+  }
+
+  .event-upcoming-header {
+    margin-bottom: 16px !important;
+    gap: 12px !important;
+  }
+
+  .event-upcoming-header .event-section-title {
+    margin-left: 10px !important;
+  }
+
+  .event-upcoming-header .event-view-all {
+    margin-right: 10px !important;
+    font-size: 13px !important;
+  }
+
+  .event-upcoming-list {
+    gap: 12px !important;
+  }
+
+  .event-upcoming-item {
+    padding: 14px 16px !important;
+    border-radius: 16px !important;
+    gap: 14px !important;
+  }
+
+  .event-upcoming-marker {
+    height: 42px !important;
+  }
+
+  .event-upcoming-title {
+    font-size: 14px !important;
+  }
+
+  .event-upcoming-teacher {
+    font-size: 11px !important;
+  }
+
+  .event-upcoming-meta {
+    gap: 8px !important;
+    font-size: 11px !important;
+  }
+
+  .event-upcoming-date,
+  .event-upcoming-time {
+    gap: 6px !important;
+  }
+
+  .event-upcoming-date svg,
+  .event-upcoming-time svg {
+    width: 14px !important;
+    height: 14px !important;
+  }
+}
+
+/* ========== Desktop Restoration (above 1366px) ========== */
+@media (min-width: 1367px) {
+  .event-section-title {
+    font-size: 22px !important;
+    margin-bottom: 20px !important;
+  }
+
+  .event-ongoing-section {
+    padding: 20px !important;
+  }
+
+  .event-ongoing-card {
+    padding: 20px !important;
+    border-radius: 18px !important;
+    gap: 12px !important;
+  }
+
+  .event-ongoing-percentage {
+    font-size: 18px !important;
+  }
+
+  .event-ongoing-name {
+    font-size: 16px !important;
+  }
+
+  .event-today-section {
+    padding: 24px !important;
+    border-radius: 24px !important;
+  }
+
+  .event-today-timeline {
+    gap: 24px !important;
+    min-height: 480px !important;
+  }
+
+  .event-time-labels {
+    gap: 48px !important;
+    font-size: 12px !important;
+    min-width: 50px !important;
+  }
+
+  .event-timeline-grid {
+    gap: 48px !important;
+  }
+
+  .event-schedule-items {
+    min-height: 480px !important;
+  }
+
+  .event-schedule-item {
+    padding: 18px 20px !important;
+    border-radius: 18px !important;
+    gap: 12px !important;
+  }
+
+  .event-schedule-header {
+    font-size: 16px !important;
+  }
+
+  .event-schedule-subtitle {
+    font-size: 12px !important;
+  }
+
+  .event-calendar-section {
+    padding: 24px !important;
+    border-radius: 24px !important;
+    gap: 24px !important;
+  }
+
+  .event-calendar-content {
+    gap: 24px !important;
+  }
+
+  .event-calendar-widget {
+    margin-left: 20px !important;
+  }
+
+  .event-calendar-widget :global([role="gridcell"] button),
+  .event-calendar-widget :global(button[aria-label*="day"]),
+  .event-calendar-widget :global(.rdp-day_button) {
+    width: 36px !important;
+    height: 36px !important;
+    min-width: 36px !important;
+    min-height: 36px !important;
+    font-size: inherit !important;
+  }
+
+  .event-progress-chart {
+    width: 150px !important;
+    height: 105px !important;
+  }
+
+  .event-progress-title {
+    font-size: 14px !important;
+  }
+
+  .event-progress-percent {
+    font-size: 20px !important;
+  }
+
+  .event-calendar-text {
+    font-size: 12px !important;
+  }
+
+  .event-calendar-legend {
+    gap: 16px !important;
+    font-size: 12px !important;
+  }
+
+  .event-upcoming-section {
+    padding: 20px !important;
+  }
+
+  .event-upcoming-header {
+    margin-bottom: 20px !important;
+    gap: 16px !important;
+  }
+
+  .event-upcoming-header .event-section-title {
+    margin-left: 20px !important;
+  }
+
+  .event-upcoming-header .event-view-all {
+    margin-right: 20px !important;
+    font-size: 14px !important;
+  }
+
+  .event-upcoming-list {
+    gap: 16px !important;
+  }
+
+  .event-upcoming-item {
+    padding: 16px 20px !important;
+    border-radius: 18px !important;
+    gap: 18px !important;
+  }
+
+  .event-upcoming-marker {
+    height: 48px !important;
+  }
+
+  .event-upcoming-title {
+    font-size: 16px !important;
+  }
+
+  .event-upcoming-teacher {
+    font-size: 12px !important;
+  }
+
+  .event-upcoming-meta {
+    gap: 10px !important;
+    font-size: 12px !important;
+  }
+
+  .event-upcoming-date,
+  .event-upcoming-time {
+    gap: 8px !important;
+  }
+
+  .event-upcoming-date svg,
+  .event-upcoming-time svg {
+    width: 16px !important;
+    height: 16px !important;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .event-main-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 1024px) {
+  /* Removed - now using flex with horizontal scrolling */
+}
+
+@media (max-width: 768px) {
+  .event-page-container {
+    padding: 0 16px;
+  }
+
+  .event-upcoming-item {
+    grid-template-columns: 6px 1fr;
+    grid-template-rows: auto auto;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .event-upcoming-meta {
+    flex-direction: row;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .event-upcoming-arrow {
+    display: none;
+  }
+
+  /* Timeline responsive adjustments */
+  .event-today-timeline {
+    gap: 12px;
+  }
+
+  .event-time-labels {
+    min-width: 40px;
+    font-size: 10px;
+  }
+
+  .event-timeline-grid {
+    gap: 48px;
+  }
+
+  .event-schedule-item {
+    padding: 12px;
+    left: 0 !important;
+    /* Override inline styles for mobile */
+    right: 0 !important;
+    width: auto !important;
+  }
+
+  /* Stack calendar and progress on mobile */
+  .event-calendar-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .event-calendar-widget {
+    margin-left: 0;
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ========== DARK MODE STYLES ========== */
+
+/* Section titles */
+.dark .event-section-title {
+  color: #f1f5f9 !important;
+}
+
+/* Ongoing class cards */
+.dark .event-ongoing-card {
+  background-color: rgb(51 65 85) !important;
+}
+
+.dark .event-ongoing-percentage {
+  color: #f1f5f9 !important;
+}
+
+.dark .event-ongoing-name {
+  color: #f1f5f9 !important;
+}
+
+.dark .event-ongoing-arrow {
+  color: #94a3b8 !important;
+}
+
+/* Today schedule section */
+.dark .event-today-section {
+  background-color: #111c44 !important;
+}
+
+.dark .event-time-label {
+  color: #cbd5e1 !important;
+}
+
+.dark .event-timeline-line {
+  border-top-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+.dark .event-schedule-item {
+  background-color: rgb(71 85 105) !important;
+}
+
+.dark .event-schedule-header {
+  color: #f1f5f9 !important;
+}
+
+.dark .event-schedule-title {
+  color: #f1f5f9 !important;
+}
+
+.dark .event-schedule-subtitle {
+  color: #cbd5e1 !important;
+}
+
+.dark .event-schedule-menu {
+  color: #94a3b8 !important;
+}
+
+/* Calendar section */
+.dark .event-calendar-section {
+  background-color: #111c44 !important;
+}
+
+.dark .event-progress-title {
+  color: #f1f5f9 !important;
+}
+
+.dark .event-calendar-text {
+  color: #cbd5e1 !important;
+}
+
+.dark .event-calendar-legend {
+  color: #cbd5e1 !important;
+}
+
+/* Upcoming schedule section */
+.dark .event-upcoming-item {
+  background-color: #141E5A !important;
+}
+
+.dark .event-upcoming-title {
+  color: #f1f5f9 !important;
+}
+
+.dark .event-upcoming-teacher {
+  color: #cbd5e1 !important;
+}
+
+.dark .event-upcoming-meta {
+  color: #cbd5e1 !important;
+}
+
+.dark .event-upcoming-date,
+.dark .event-upcoming-time {
+  color: #cbd5e1 !important;
+}
+
+.dark .event-view-all {
+  color: #4ade80 !important;
+}
+
+/* Dark mode overrides for Event page cards */
+.dark .event-ongoing-card {
+  background-color: #141E5A !important;
+}
+
+.dark .event-ongoing-percentage {
+  color: #ffffff !important;
+}
+
+.dark .event-ongoing-name {
+  color: #e5e7eb !important;
+}
+
+.dark .event-section-title {
+  color: #ffffff !important;
+}
+
+.dark .event-time-labels {
+  color: #d1d5db !important;
+}
+
+.dark .event-schedule-item {
+  background-color: #141E5A !important;
+}
+
+.dark .event-schedule-header {
+  color: #ffffff !important;
+}
+
+.dark .event-schedule-subtitle {
+  color: #d1d5db !important;
+}
+
+.dark .event-progress-title {
+  color: #ffffff !important;
+}
+
+.dark .event-calendar-text {
+  color: #d1d5db !important;
+}
+
+.dark .event-calendar-legend {
+  color: #d1d5db !important;
+}
